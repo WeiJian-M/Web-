@@ -126,8 +126,7 @@ lalalala
 <hr color="yellow">
 <font size="2", color="gray">
     <center>
-        江苏传智播客教育科技股份有限公司<br>
-        版权所有Copyright&copy; 2006-2018, All Rights Reserved 苏ICP备16007882
+        
     </center>
 </font>
 
