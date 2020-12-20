@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态添加表项</title>
+    <style>
+        table{
+            margin: auto;
+            border: black 1px solid;
+            width: 500px;
+        }
+
+        td, th{
+            text-align: center;
+            border: black 1px solid;
+        }
+
+        div{
+            text-align: center;
+            margin: 50px;
+        }
+
+        .setN{
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            //全选
+            document.getElementById("selAll").onclick = function () {
+                var elementsByName = document.getElementsByName("cb");
+                for (var i = 0; i < elementsByName.length; i++) {
+                    elementsByName[i].checked = true;
+                }
+            }
+
+            //全不选
+            document.getElementById("selNone").onclick = function () {
+                var elementsByName = document.getElementsByName("cb");
+                for (var i = 0; i < elementsByName.length; i++) {
+                    elementsByName[i].checked = false;
+                }
+            }
+            //反选
+            document.getElementById("selOther").onclick = function () {
+                var elementsByName = document.getElementsByName("cb");
+                for (var i = 0; i < elementsByName.length; i++) {
+                    elementsByName[i].checked = !elementsByName[i].checked;
+                }
+            }
+
+            //跟随第一行操作
+            document.getElementById("cbfirst").onclick = function () {
+                var elementsByName = document.getElementsByName("cb");
+                for (var i = 0; i < elementsByName.length; i++) {
+                    elementsByName[i].checked = this.checked;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div>
+    编号：
+    <input type="text" id = "id">
+    姓名：
+    <input type="text" id = "name">
+    性别：
+    <input type="text" id = "sex">
+    <input type="button" id = "add" value="添加">
+</div>
+<table>
+    <caption>名单信息</caption>
+    <tr>
+        <th> <input type="checkbox" name="cb" id="cbfirst"></th>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>操作</th>
+    </tr>
+</table>
+
+<script>
+    //给添加按钮绑定单机事件
+    document.getElementById("add").onclick = function () {
+        var id = document.getElementById("id").value;
+        var name = document.getElementById("name").value;
+        var sex = document.getElementById("sex").value;
+
+        var id_text = document.createTextNode(id);
+        var name_text = document.createTextNode(name);
+        var sex_text = document.createTextNode(sex);
+
+        //创建td
+        var td_cb = document.createElement("td");
+        var td_id = document.createElement("td");
+        var td_name = document.createElement("td");
+        var td_sex = document.createElement("td");
+        var del = document.createElement("td");
+
+        var cb = document.createElement("input");
+        cb.setAttribute("type", "checkbox");
+        cb.setAttribute("name", "cb");
+
+        td_cb.appendChild(cb);
+        td_id.appendChild(id_text);
+        td_name.appendChild(name_text);
+        td_sex.appendChild(sex_text);
+
+        //创建一个超链接
+        var a = document.createElement("a");
+        a.setAttribute("href", "javascript:void(0)");
+        a.setAttribute("onclick", "delTr(this)");
+        var text = document.createTextNode("删除");
+        a.appendChild(text);
+        //添加到表项中
+        del.appendChild(a);
+        //创建表格的一行
+        var tr = document.createElement("tr");
+        tr.appendChild(td_cb);
+        tr.appendChild(td_id);
+        tr.appendChild(td_name);
+        tr.appendChild(td_sex);
+        tr.appendChild(del);
+
+        document.getElementsByTagName("table")[0].appendChild(tr);
+    }
+
+    function delTr(e) {
+        var table = e.parentNode.parentNode.parentNode;
+        var tr = e.parentNode.parentNode;
+
+        table.removeChild(tr);
+    }
+</script>
+<div class="setN">
+    <input type="button" id="selAll" value="全选">
+    <input type="button" id="selNone" value="全不选">
+    <input type="button" id="selOther" value="反选">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电灯开关案例</title>
+</head>
+<body>
+
+<img id="light" src="image/off.gif">
+
+<script>
+    var flag = false;
+
+    var elementById = document.getElementById("light");
+
+    elementById.onclick = function () {
+        if(flag){
+            elementById.src = "image/off.gif";
+            flag = false;
+        }else{
+            elementById.src = "image/on.gif";
+            flag = true;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+</head>
+<body>
+<img id="image" src="../image/banner_1.jpg" width="100%">
+
+<script>
+    var num = 0;
+    function fun(){
+        var n = num % 3 + 1;
+        var image = document.getElementById("image");
+        image.src = "../image/banner_" + n + ".jpg";
+        num++;
+    }
+
+    //每3秒更换一张图片
+    setInterval(fun, 3000);
+</script>
+</body>
+</html>

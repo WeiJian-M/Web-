@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击事件</title>
+</head>
+<body>
+<img id="click" src="../image/register_bg.png">
+
+<script>
+    var elementById = document.getElementById("click");
+
+    function fun() {
+        alert("我被点击了");
+    }
+
+    elementById.onclick = fun;
+</script>
+
+</body>
+</html>

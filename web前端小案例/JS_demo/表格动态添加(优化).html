@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态添加表项</title>
+    <style>
+        table{
+            margin: auto;
+            border: black 1px solid;
+            width: 500px;
+        }
+
+        td, th{
+            text-align: center;
+            border: black 1px solid;
+        }
+
+        div{
+            text-align: center;
+            margin: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    编号：
+    <input type="text" id = "id">
+    姓名：
+    <input type="text" id = "name">
+    性别：
+    <input type="text" id = "sex">
+    <input type="button" id = "add" value="添加">
+</div>
+<table>
+    <caption>名单信息</caption>
+    <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>操作</th>
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td><a href="javascript:void(0);" onclick="delTr(this);">删除</a></td>
+    </tr>
+</table>
+
+<script>
+    //给添加按钮绑定单机事件
+    document.getElementById("add").onclick = function () {
+        var id = document.getElementById("id").value;
+        var name = document.getElementById("name").value;
+        var sex = document.getElementById("sex").value;
+
+        //获取table
+        var table = document.getElementsByTagName("table")[0];
+
+        table.innerHTML += "<tr>\n" +
+            "        <td>"+ id +"</td>\n" +
+            "        <td>"+ name +"</td>\n" +
+            "        <td>"+ sex +"</td>\n" +
+            "        <td><a href=\"javascript:void(0);\" onclick=\"delTr(this);\">删除</a></td>\n" +
+            "    </tr>";
+    }
+
+    function delTr(e) {
+        var table = e.parentNode.parentNode.parentNode;
+        var tr = e.parentNode.parentNode;
+
+        table.removeChild(tr);
+    }
+</script>
+</body>
+</html>
